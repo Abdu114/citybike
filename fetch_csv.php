@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col s12 center">
       <h1>Converting data</h1>
-      <table>
+      <table class="responsive-table">
         <thead>
           <tr>
               <th>No.</th>
@@ -31,7 +31,9 @@
         <tbody>
           <?php
             $co = 1;
+            //max amount to fetch
             $maxLines = 10;
+            //Here you can change into the file you need
             if(($file_handle = fopen("2021-07.csv", "r")) !== FALSE) {
               for ($i = 0; $i < $maxLines && !feof($file_handle); $i++)
               {
@@ -57,7 +59,7 @@
 
       <!-- Stations -->
       <h1>Stations data</h1>
-      <table>
+      <table class="responsive-table">
         <thead>
           <tr>
               <th>No.</th>
