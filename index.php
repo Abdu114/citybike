@@ -35,7 +35,7 @@
 			html {
 				font-family: quicksand;
 				padding: 20px;
-				background-color: #F8F9F9;
+				background-color: #fff;
 			}
 			table{
 				font-size: 1.2rem;
@@ -64,11 +64,11 @@
 				cursor: pointer;
 			}
 			.test2 .currentpage a {
-				background-color: #ee6e73;
+				background-color: #222;
 				color: #fff;
 			}
 			.test2 .currentpage a:hover {
-				background-color: #ef5c61;
+				background-color: #000;
 			}
 			.material-icons {
 				font-size: 1.8rem;
@@ -91,17 +91,48 @@
 			.total_num{
 				margin-left: 10px;
 			}
+      .search{
+        padding: 2rem;
+        margin-top: 100px;
+      }
+      .card{
+        font-size: 1.2rem;
+        display: none;
+      }
+      .card .card-content{
+        padding: 24px 40px;
+      }
+      #row_journey{
+        margin-bottom: 33px;
+        margin-top: 5px;
+      }
+      #row{
+        margin-bottom: 40px;
+      }
+      #bold_text{
+        font-weight: 600;
+      }
+      input[type=number]:not(.browser-default):focus:not([readonly]){
+        border-bottom: 1px solid #000;
+        box-shadow: 0 1px 0 0 #000;
+      }
+      input[type=number]:not(.browser-default):focus:not([readonly])+label{
+        color: #000;
+      }
+      .input-field .prefix.active{
+        color: #000;
+      }
 		</style>
 	</head>
 	<body>
 		<div class="row">
-    	<div class="col s12 l8 center offset-l2">
+    	<div class="col s12 l6 center offset-l1">
 				<h2>Journey list view</h2></br>
 				<table class="responsive-table highlight">
 					<tr>
 						<th>Journey id</th>
-						<th>Departure station name</th>
-						<th>Return station name</th>
+						<th>Departure station</th>
+						<th>Return station</th>
 						<th>Covered Distance</th>
 						<th>Duration</th>
 					</tr>
@@ -112,7 +143,7 @@
 							// format into two decimals
 							$km_decimal = number_format($distance_km, 2);
 
-							//Changing covered distance into km
+							//Changing seconds into real time
 							$duration_min = $row['duration'] ;
 							//Calculate seconds
 							$secs = $duration_min % 60;
@@ -122,8 +153,6 @@
 							$mins = $hrs % 60;
 
 							$hrs = $hrs / 60;
-							// format into two decimals
-							//$km_decimal = number_format($distance_km, 2);
 					?>
 					<tr>
 						<td><?php echo $row['id']; ?></td>
@@ -145,37 +174,49 @@
 					<?php endwhile; ?>
 				</table>
 			</div>
+      <div class="col l3 s12 search offset-l1">
+        <form">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <input id="icon_prefix" type="number" class="validate">
+              <label for="icon_prefix">Journey id</label>
+            </div>
+          </div>
+        </form>
+        <div class="card" id="card">
+          <!-- Here comes the ajax result -->
+        </div>
+      </div>
 		</div>
 		<div class="row">
-			<div class="col s12 center">
+			<div class="col l6 s12 center offset-l1">
 			<?php if (ceil($total_pages / $num_results_on_page) > 0): ?>
 				<ul class="test2">
 					<?php if ($page > 1): ?>
-					<!--<li class="prev"><a href="test2.php?page=<?php echo $page-1 ?>">Prev</a></li>-->
-					<li class="waves-effect"><a href="test2.php?page=<?php echo $page-1 ?>"><i class="material-icons">chevron_left</i></a></li>
+					<li class="waves-effect"><a href="index.php?page=<?php echo $page-1 ?>"><i class="material-icons">chevron_left</i></a></li>
 					<?php endif; ?>
 	
 					<?php if ($page > 3): ?>
-					<li class="start"><a href="test2.php?page=1">1</a></li>
+					<li class="start"><a href="index.php?page=1">1</a></li>
 					<li class="dots">...</li>
 					<?php endif; ?>
 	
-					<?php if ($page-2 > 0): ?><li class="page"><a href="test2.php?page=<?php echo $page-2 ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
-					<?php if ($page-1 > 0): ?><li class="page"><a href="test2.php?page=<?php echo $page-1 ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
+					<?php if ($page-2 > 0): ?><li class="page"><a href="index.php?page=<?php echo $page-2 ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
+					<?php if ($page-1 > 0): ?><li class="page"><a href="index.php?page=<?php echo $page-1 ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
 	
-					<li class="currentpage"><a href="test2.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+					<li class="currentpage"><a href="index.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
 	
-					<?php if ($page+1 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="test2.php?page=<?php echo $page+1 ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
-					<?php if ($page+2 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="test2.php?page=<?php echo $page+2 ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
+					<?php if ($page+1 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?page=<?php echo $page+1 ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
+					<?php if ($page+2 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?page=<?php echo $page+2 ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
 	
 					<?php if ($page < ceil($total_pages / $num_results_on_page)-2): ?>
 					<li class="dots">...</li>
-					<li class="end"><a href="test2.php?page=<?php echo ceil($total_pages / $num_results_on_page) ?>"><?php echo ceil($total_pages / $num_results_on_page) ?></a></li>
+					<li class="end"><a href="index.php?page=<?php echo ceil($total_pages / $num_results_on_page) ?>"><?php echo ceil($total_pages / $num_results_on_page) ?></a></li>
 					<?php endif; ?>
 	
 					<?php if ($page < ceil($total_pages / $num_results_on_page)): ?>
-					<!--<li class="next"><a href="test2.php?page=<?php echo $page+1 ?>">Next</a></li>-->
-					<li class="waves-effect"><a href="test2.php?page=<?php echo $page+1 ?>"><i class="material-icons">chevron_right</i></a></li>
+					<li class="waves-effect"><a href="index.php?page=<?php echo $page+1 ?>"><i class="material-icons">chevron_right</i></a></li>
 					<?php endif; ?>
 				</ul>
 				<?php endif; ?>
@@ -183,6 +224,7 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    <script src="journey.js"></script>
 	</body>
 </html>
 <?php
