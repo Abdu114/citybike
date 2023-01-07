@@ -176,12 +176,12 @@
 					<div class="row">
 						<div class="input-field col s12">
 							<i class="material-icons prefix">search</i>
-							<input id="icon_prefix" type="number" class="validate">
+							<input id="icon_prefix_small" type="number" class="validate">
 							<label for="icon_prefix">Journey id</label>
 						</div>
 					</div>
 				</form>
-				<div class="card" id="card">
+				<div class="card" id="card_small">
 					<!-- Here comes the ajax result -->
 				</div>
 			</div>
@@ -284,12 +284,6 @@
 		</div>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <script src="journey.js"></script>
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {});
-  });
-		</script>
 	</body>
 </html>
 <?php
