@@ -3,7 +3,7 @@
 	//connect to database.
 	$mysqli = $db;
 
-	// Get the total number of records from our table "students".
+	// Get the total number of records from our table "journeys".
 	$total_pages = $mysqli->query('SELECT * FROM journeys WHERE covered_distance > 10 AND duration > 10 LIMIT 100')->num_rows;
 
 	// Check if the page number is specified and check if it's a number, if not return the default page number which is 1.
@@ -29,7 +29,7 @@
 		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		<!--font-->
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-		<title>City Bike</title>
+    <title>City Bike || Journeys List VIew</title>
 		<meta charset="utf-8">
 		<style>
 			html {
@@ -98,9 +98,12 @@
       .card{
         font-size: 1.2rem;
         display: none;
+				width: 91%;
+				margin-left: 47px;
+				box-shadow: none;
       }
       .card .card-content{
-        padding: 24px 40px;
+        padding: 24px 25px;
       }
       #row_journey{
         margin-bottom: 33px;
@@ -108,11 +111,12 @@
       }
       #row{
         margin-bottom: 40px;
+				border-bottom: 1px solid #0000001f;
       }
       #bold_text{
         font-weight: 600;
       }
-      input[type=number]:not(.browser-default):focus:not([readonly]){
+      input[type=number]:not(.browser-default):focus:not([readonly]), input.valid[type=number]:not(.browser-default){
         border-bottom: 1px solid #000;
         box-shadow: 0 1px 0 0 #000;
       }
@@ -122,11 +126,41 @@
       .input-field .prefix.active{
         color: #000;
       }
+			nav{
+				background-color: #000;
+				color: #fff;
+			}
+			#nav-center {
+				display:flex;
+				justify-content: center;
+			}
+			nav ul li.active a{
+				background-color: #fff;
+				color: #222;
+			}
 		</style>
 	</head>
 	<body>
+		<nav>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<div class="nav-wrapper">
+				<ul class="hide-on-med-and-down" id="nav-center">
+					<li class="active"><a href="#">Journey list</a></li>
+					<li><a href="stations.php">Stations List</a></li>
+					<li><a href="stations_single.php">Single station view</a></li>
+					<li><a href="filter_journeys.html">Filter Journeys</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<ul class="sidenav" id="mobile-demo">
+			<li class="active"><a href="#">Journey list</a></li>
+			<li><a href="stations.php">Stations List</a></li>
+			<li><a href="stations_single.php">Single station view</a></li>
+			<li><a href="filter_journeys.html">Filter Journeys</a></li>
+		</ul>
 		<div class="row">
-    	<div class="col s12 l6 center offset-l1">
+			<div class="col s12 l6 center offset-l1">
 				<h2>Journey list view</h2></br>
 				<table class="responsive-table highlight">
 					<tr>
@@ -174,20 +208,20 @@
 					<?php endwhile; ?>
 				</table>
 			</div>
-      <div class="col l3 s12 search offset-l1">
-        <form">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">search</i>
-              <input id="icon_prefix" type="number" class="validate">
-              <label for="icon_prefix">Journey id</label>
-            </div>
-          </div>
-        </form>
-        <div class="card" id="card">
-          <!-- Here comes the ajax result -->
-        </div>
-      </div>
+			<div class="col l3 s12 search offset-l1">
+				<form">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">search</i>
+							<input id="icon_prefix" type="number" class="validate">
+							<label for="icon_prefix">Journey id</label>
+						</div>
+					</div>
+				</form>
+				<div class="card" id="card">
+					<!-- Here comes the ajax result -->
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col l6 s12 center offset-l1">
@@ -225,6 +259,12 @@
 		</div>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <script src="journey.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+  });
+		</script>
 	</body>
 </html>
 <?php
