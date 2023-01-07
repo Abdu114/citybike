@@ -129,6 +129,8 @@
 			nav{
 				background-color: #000;
 				color: #fff;
+				width: 90%;
+				margin: auto;
 			}
 			#nav-center {
 				display:flex;
@@ -138,6 +140,14 @@
 				background-color: #fff;
 				color: #222;
 			}
+			nav ul li:hover{
+				background-color: #ffffff50;
+			}
+			@media only screen and (max-width: 992px) {
+				nav{
+					width: 100%;
+			}
+			}
 		</style>
 	</head>
 	<body>
@@ -146,20 +156,35 @@
 			<div class="nav-wrapper">
 				<ul class="hide-on-med-and-down" id="nav-center">
 					<li class="active"><a href="#">Journey list</a></li>
-					<li><a href="stations.php">Stations List</a></li>
-					<li><a href="stations_single.php">Single station view</a></li>
-					<li><a href="filter_journeys.html">Filter Journeys</a></li>
+					<li><a href="stations.php">Station List</a></li>
+					<li><a href="stations-single.php">Single station view</a></li>
+					<li><a href="filter-journeys.php">Filter Journeys</a></li>
 				</ul>
 			</div>
 		</nav>
 
 		<ul class="sidenav" id="mobile-demo">
 			<li class="active"><a href="#">Journey list</a></li>
-			<li><a href="stations.php">Stations List</a></li>
-			<li><a href="stations_single.php">Single station view</a></li>
-			<li><a href="filter_journeys.html">Filter Journeys</a></li>
+			<li><a href="stations.php">Station List</a></li>
+			<li><a href="stations-single.php">Single station view</a></li>
+			<li><a href="filter-journeys.php">Filter Journeys</a></li>
 		</ul>
 		<div class="row">
+			<!-- search for small screens -->
+			<div class="col l3 s12 search hide-on-large-only">
+				<form">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">search</i>
+							<input id="icon_prefix" type="number" class="validate">
+							<label for="icon_prefix">Journey id</label>
+						</div>
+					</div>
+				</form>
+				<div class="card" id="card">
+					<!-- Here comes the ajax result -->
+				</div>
+			</div>
 			<div class="col s12 l6 center offset-l1">
 				<h2>Journey list view</h2></br>
 				<table class="responsive-table highlight">
@@ -208,7 +233,7 @@
 					<?php endwhile; ?>
 				</table>
 			</div>
-			<div class="col l3 s12 search offset-l1">
+			<div class="col l3 s12 search offset-l1 hide-on-med-and-down">
 				<form">
 					<div class="row">
 						<div class="input-field col s12">
