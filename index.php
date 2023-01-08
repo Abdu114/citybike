@@ -140,13 +140,17 @@
 				background-color: #fff;
 				color: #222;
 			}
+			nav ul li.active a, nav ul li.active a:hover{
+				background-color: #fff;
+				color: #222;
+			}
 			nav ul li:hover{
 				background-color: #ffffff50;
 			}
 			@media only screen and (max-width: 992px) {
 				nav{
 					width: 100%;
-			}
+				}
 			}
 		</style>
 	</head>
@@ -177,7 +181,7 @@
 						<div class="input-field col s12">
 							<i class="material-icons prefix">search</i>
 							<input id="icon_prefix_small" type="number" class="validate">
-							<label for="icon_prefix">Journey id</label>
+							<label for="icon_prefix_small">Journey id</label>
 						</div>
 					</div>
 				</form>
