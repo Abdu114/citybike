@@ -57,6 +57,10 @@
       .input-field .prefix.active{
         color: #000;
       }
+      .collections{
+        max-height: 600px;
+        overflow: overlay;
+      }
       .collection-items{
         border-bottom: 1px solid #000;
         padding: 10px;
@@ -78,6 +82,24 @@
         -ms-transform: scale(1.03);
         -webkit-transform: scale(1.03);
 
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: transparent;
+        margin-block: 0.0em;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: 	hsl(0, 0%, 1%);
+        height: 150px;
+
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: 	hsl(0, 0%, 25%);
       }
 			@media only screen and (max-width: 992px) {
 				nav{
