@@ -119,7 +119,18 @@
               </div>
             </div>
             <ul class="collections">
-              <li class="collection-items">1. Pasilan asema</li>
+              <?php
+                include('db.php');
+                $sql = "SELECT nimi FROM stations ORDER BY nimi ASC";
+                $res = mysqli_query($db, $sql);
+                $no = 1;
+                while($row = mysqli_fetch_assoc($res)){
+                  echo '
+                  <li class="collection-items">'.$no++. ". ", $row["nimi"].'</li>
+                  ';
+                }
+              ?>
+              <!--<li class="collection-items">1. Pasilan asema</li>
               <li class="collection-items">2. Kauppakorkeakoulu</li>
               <li class="collection-items">3. Suomenlahdentie</li>
               <li class="collection-items">4. Armas Launiksen katu</li>
@@ -130,7 +141,7 @@
               <li class="collection-items">9. Mäkkylän asema</li>
               <li class="collection-items">10. Kapteeninpuistikko</li>
               <li class="collection-items">11. Hämeenlinnanväylä</li>
-              <li class="collection-items">12. Kaisaniemenpuisto</li>
+              <li class="collection-items">12. Kaisaniemenpuisto</li>-->
             </ul>
           </div>
         </div>
@@ -153,8 +164,8 @@
           this.classList.add("active");
           // Get station names
           let getStationNames = e.target.textContent;
-          // get only string values
-          const filterStationNames = getStationNames.replace(/[^A-Za-z]/g, '');
+          // get only string values, spaces and some symbols
+          const filterStationNames = getStationNames.replace(/[^A-Za-z' ' (),-]/g, '');
           console.log(filterStationNames);
           }, false);;
       }
