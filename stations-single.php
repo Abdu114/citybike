@@ -358,8 +358,24 @@
       var elems = document.querySelectorAll('select');
       var instances = M.FormSelect.init(elems, {});
     });
+    // search
+    const filter = document.querySelector('#icon_prefix');
+    filter.addEventListener('keyup', filterTasks);
+    // Filter Tasks
+    function filterTasks(e) {
+      const text = e.target.value.toLowerCase();
+      document.querySelectorAll('.collection-items').forEach(
+      function(task){
+          // liiska qoraalkiisa intuu kasoo helaa
+          const item = task.textContent;
+          if(item.toLowerCase().indexOf(text) != -1){
+              task.parentElement.style.display = 'block';
+          }
+          else {
+          task.parentElement.style.display = 'none';
+          }
+      });
+    }
   </script>
   </body>
 </html>
-
-<!--AIzaSyDohh_3rmXgWfj1lv59ll3GT28kKdH7ctk-->
