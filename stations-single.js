@@ -1,6 +1,7 @@
 const selectBox = document.getElementById('select').addEventListener('change', search);
 const monthlyBox = document.getElementById('monthly-id');
 const stationID = document.getElementById('id');
+const loader = document.getElementById('loader');
       
 function search(e) {
   // Change month div to the selected month
@@ -13,10 +14,20 @@ function search(e) {
   if(e.target.value !== ''){
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'stations-single-ajax.php?month=' + monthValue + '&&' +'id=' + idValue, true);
+    
+    // We show a loader while ajax is loading
+    xhr.onloadstart = function(){
+      resultBox.style.display = 'none';
+      loader.style.display = 'block';
+    }
+
     xhr.onload = function(){
       if (xhr.readyState == 4 && xhr.status == 200) { 
         // Put the result in to the DOM
+        loader.style.display = 'none';
+        resultBox.style.display = 'block';
         resultBox.innerHTML = xhr.responseText;
+
       }
       else{
         console.log('error');
