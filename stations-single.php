@@ -13,130 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--font-->
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-
+    <!--CSS file-->
+    <link rel="stylesheet" href="station-single.css">
     <title>City Bike || Stations Single VIew</title>
-    <style>
-      
-      html {
-          font-family: quicksand;
-          padding: 20px;
-          background-color: #fff;
-          color: #222;
-      }
-      table{
-          font-size: 1.2rem;
-      }
-      .pagination li.active {
-          background-color: #222;
-      }
-      .sorting{
-          cursor: pointer;
-      }
-      .material-icons{
-          vertical-align: bottom;
-      }
-      nav{
-				background-color: #000;
-				color: #fff;
-				width: 90%;
-				margin: auto;
-			}
-			#nav-center {
-				display:flex;
-				justify-content: center;
-			}
-			nav ul li.active a, nav ul li.active a:hover{
-				background-color: #fff;
-				color: #222;
-			}
-			nav ul li:hover{
-				background-color: #ffffff50;
-			}
-      input[type=text]:not(.browser-default):focus:not([readonly]), input.valid[type=text]:not(.browser-default){
-        border-bottom: 1px solid #000;
-        box-shadow: 0 1px 0 0 #000;
-      }
-      input[type=text]:not(.browser-default):focus:not([readonly])+label{
-        color: #000;
-      }
-      .input-field .prefix.active{
-        color: #000;
-      }
-      .collections{
-        max-height: 600px;
-        overflow: overlay;
-      }
-      .collection-items{
-        border-bottom: 1px solid #000;
-        padding: 10px;
-        font-size: 1.2rem;
-        cursor: pointer;
-      }
-      .collection-items.active{
-        background-color: #000;
-        color: #fff;
-        transform: scale(1.03);
-        transition: 0.3s;
-        -ms-transform: scale(1.03);
-        -webkit-transform: scale(1.03);
-      }
-      .collection-items:hover{
-        transform: scale(1.03);
-        transition: 0.3s;
-        -ms-transform: scale(1.03);
-        -webkit-transform: scale(1.03);
-      }
-      a{
-        color: #000;
-      }
-      ::-webkit-scrollbar {
-        width: 7px;
-        height: 7px;
-
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-        margin-block: 0.0em;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: hsl(0, 0%, 1%);
-        height: 150px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: 	hsl(0, 0%, 25%);
-      }
-      #map {
-        height: 400px; 
-        width: 100%;
-        margin-top: 30px;
-      }
-      #right-align{
-        float: right;
-      }
-      #left-col{
-        padding-left: 90px;
-      }
-      .label{
-        margin-bottom: -12px;
-      }
-      .bold-text{
-        font-weight: 600;
-      }
-      #loader{
-        display: none;
-      }
-			@media only screen and (max-width: 992px) {
-				nav{
-					width: 100%;
-			  }
-        .collections{
-        max-height: 300px;
-        overflow: overlay;
-      }
-			}
-    </style>
   </head>
-  
   <body>
     <nav>
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -204,7 +84,7 @@
       <!-- Data box -->
       <div class="col l7 s12 " id="data-box">
         <div class="row">
-          <div class="input-field col s2" id="right-align">
+          <div class="input-field col l2 s6" id="right-align">
             <select id="select">
               <!--<option value="" disabled selected>Filter monthly</option>-->
               <option value="May">May</option>
@@ -286,7 +166,7 @@
         </div>
 
         <div class="row">
-          <div class="col s8 offset-l2">
+          <div class="col l8 s12 offset-l2">
             <div id="map"></div>
           </div>
         </div>
