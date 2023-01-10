@@ -85,8 +85,8 @@
       <div class="col l7 s12 " id="data-box">
         <div class="row">
           <div class="input-field col l2 s6" id="right-align">
+            <p class="bold-text">Filter by monthly</p>
             <select id="select">
-              <!--<option value="" disabled selected>Filter monthly</option>-->
               <option value="May">May</option>
               <option value="June">June</option>
               <option value="July">July</option>
