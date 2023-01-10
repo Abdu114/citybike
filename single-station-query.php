@@ -5,8 +5,13 @@
   $first_station_query = mysqli_query($db, $first_station_sql);
   $first_station_fetch = mysqli_fetch_assoc($first_station_query);
   $first_station_res_name = $first_station_fetch['nimi'];
+  // remove special charecters form link endpoint
+  if(!empty($_GET['station'])){
+    $link_replace = str_replace('\'', "", $_GET['station']);
+  }else{
+  }
   // if the link is empty get the first station name in DB
-  $station_name = isset($_GET['station']) ? $_GET['station'] : $first_station_res_name;
+  $station_name = isset($link_replace) && is_string($link_replace) ? $link_replace : $first_station_res_name;
 
   // station in the link
   $station_link_sql = "SELECT id, nimi, namn, x, y, osoite FROM stations WHERE nimi = '$station_name'";
@@ -22,7 +27,7 @@
   }
 
   // Total journeys started
-  $total_journeys_started_sql = "SELECT count(journeys.departure_station_id) as startedjourneys FROM journeys INNER JOIN stations ON journeys.departure_station_id = stations.id WHERE stations.id = '$station_link_res_id'";
+  $total_journeys_started_sql = "SELECT count(journeys.departure_station_id) as startedjourneys FROM journeys INNER JOIN stations ON journeys.departure_station_id = stations.id WHERE stations.id = $station_link_res_id";
   $total_journeys_started_query = mysqli_query($db, $total_journeys_started_sql);
   $total_journeys_started_fetch = mysqli_fetch_assoc($total_journeys_started_query);
   $total_journeys_started_res = $total_journeys_started_fetch['startedjourneys'];
@@ -77,4 +82,65 @@
   $AVended_distance_km =  $AVendedjourneysdone / 1000;
   // format into two decimals
   $AVended_km_decimal = number_format($AVended_distance_km, 2);
+
+  //Monthly
+
+  // Total journeys started monthly
+  $total_journeys_started_monthly_sql = "SELECT count(journeys.departure_station_id) as startedjourneysM FROM journeys INNER JOIN stations ON journeys.departure_station_id = stations.id WHERE stations.id = $station_link_res_id AND MONTHNAME(journeys.departure_date) = 'May'";
+  //echo $total_journeys_started_sql;
+  $total_journeys_started_monthly_query = mysqli_query($db, $total_journeys_started_monthly_sql);
+  $total_journeys_started_monthly_fetch = mysqli_fetch_assoc($total_journeys_started_monthly_query);
+  $total_journeys_started_monthly_res = $total_journeys_started_monthly_fetch['startedjourneysM'];
+
+  // Total journeys ended monthly
+  $total_journeys_ended_monthly_sql = "SELECT count(journeys.return_station_id) as endedjourneysM FROM journeys INNER JOIN stations ON journeys.return_station_id = stations.id WHERE stations.id = $station_link_res_id AND MONTHNAME(journeys.return_date) = 'May'";
+  //echo $total_journeys_ended_sql;
+  $total_journeys_ended_monthly_query = mysqli_query($db, $total_journeys_ended_monthly_sql);
+  $total_journeys_ended_monthly_fetch = mysqli_fetch_assoc($total_journeys_ended_monthly_query);
+  $total_journeys_ended_monthly_res = $total_journeys_ended_monthly_fetch['endedjourneysM'];
+
+  // The average distance of a journey starting from the station (Monthly)
+  // First we get the sum of the covered distance 
+  $AVstarted_monthly_sql = "SELECT sum(covered_distance) as AVdistancestartedM FROM journeys WHERE departure_station_id = $station_link_res_id AND MONTHNAME(journeys.departure_date) = 'May'";
+  $AVstarted_monthly_query = mysqli_query($db, $AVstarted_monthly_sql);
+  $AVstarted_monthly_fetch = mysqli_fetch_assoc($AVstarted_monthly_query);
+  $AVstarted_monthly_res = $AVstarted_monthly_fetch['AVdistancestartedM'];
+
+  //count the journeys departured from this station
+  $AVstartedcount_monthly_sql = "SELECT count(covered_distance) as countjourneysstartedM FROM journeys WHERE departure_station_id = $station_link_res_id AND MONTHNAME(journeys.departure_date) = 'May'";
+  $AVstartedcount_monthly_query = mysqli_query($db, $AVstartedcount_monthly_sql);
+  $AVstartedcount_monthly_fetch = mysqli_fetch_assoc($AVstartedcount_monthly_query);
+  $AVstartedcount_monthly_res = $AVstartedcount_monthly_fetch['countjourneysstartedM'];
+  //echo $AVstartedcount_res;
+
+  // average formula
+  $AVstartedjourneysMdone = $AVstarted_monthly_res / $AVstartedcount_monthly_res;
+
+  // to km
+  //Changing covered distance into km
+  $AVstarted_monthly_distance_km =  $AVstartedjourneysMdone / 1000;
+  // format into two decimals
+  $AVstarted_monthly_km_decimal = number_format($AVstarted_monthly_distance_km, 2);
+
+  // The average distance of a journeys ended (monthly)
+  // First we get the sum of the covered distance 
+  $AVended_monthly_sql = "SELECT sum(covered_distance) as AVdistanceendedM FROM journeys WHERE return_station_id = $station_link_res_id AND MONTHNAME(journeys.return_date) = 'May'";
+  $AVended_monthly_query = mysqli_query($db, $AVended_monthly_sql);
+  $AVended_monthly_fetch = mysqli_fetch_assoc($AVended_monthly_query);
+  $AVended_monthly_res = $AVended_monthly_fetch['AVdistanceendedM'];
+
+  //count the journeys departured from this station
+  $AVended_monthly_count_sql = "SELECT count(covered_distance) as countjourneysendedM FROM journeys WHERE return_station_id = $station_link_res_id AND MONTHNAME(journeys.return_date) = 'May'";
+  $AVended_monthly_count_query = mysqli_query($db, $AVended_monthly_count_sql);
+  $AVended_monthly_count_fetch = mysqli_fetch_assoc($AVended_monthly_count_query);
+  $AVended_monthly_count_res = $AVended_monthly_count_fetch['countjourneysendedM'];
+
+  // average formula
+  $AVendedjourneysdone_monthly = $AVended_monthly_res / $AVended_monthly_count_res;
+
+  // to km
+  //Changing covered distance into km
+  $AVended_monthly_distance_km =  $AVendedjourneysdone_monthly / 1000;
+  // format into two decimals
+  $AVended_monthly_km_decimal = number_format($AVended_monthly_distance_km, 2);
 ?>
