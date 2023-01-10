@@ -122,7 +122,9 @@
       .bold-text{
         font-weight: 600;
       }
-      
+      #loader{
+        display: none;
+      }
 			@media only screen and (max-width: 992px) {
 				nav{
 					width: 100%;
@@ -251,7 +253,13 @@
             <h5 class="center-align bold-text" id="monthly-id">Monthly ( May )</h5>
           </div>
         </div>
-        
+        <div class="row">
+          <div class="col s12">
+            <div class="center" id="loader">
+              <img src="loader.svg" alt="Loading">
+            </div>
+          </div>
+        </div>
         <div id="result">
           <div class="row">
             <div class="col s5 offset-s1" id ="left-col">
