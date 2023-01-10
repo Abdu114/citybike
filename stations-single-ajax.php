@@ -77,11 +77,11 @@
 <div class="row">
   <div class="col s5 offset-s1" id ="left-col">
     <p class="label">Average distance of started journeys</p>
-    <h5 class="bold-text">'.$AVstarted_monthly_km_decimal.', km</h5>
+    <h5 class="bold-text">'.$AVstarted_monthly_km_decimal.'km</h5>
   </div>
   <div class="col s5" id ="right-col">
     <p class="label">Average distance of ended journey</p>
-    <h5 class="bold-text">'.$AVended_monthly_km_decimal.', km</h5>
+    <h5 class="bold-text">'.$AVended_monthly_km_decimal.'km</h5>
   </div>
 </div>';
 ?>
