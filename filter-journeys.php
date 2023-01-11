@@ -10,6 +10,11 @@
     <!--font-->
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <title>City Bike || Filtering journeys</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css" rel="stylesheet"/>
+
+  </head>
     <style>
       html {
           font-family: quicksand;
@@ -49,6 +54,83 @@
       .bold-text{
         font-weight: 600;
       }
+      .select2 .selection .select2-selection--single, .select2-container--default .select2-search--dropdown .select2-search__field {
+          border-width: 0 0 1px 0 !important;
+          border-radius: 0 !important;
+          height: 2.05rem;
+      }
+
+      .select2-container--default .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--multiple {
+          border-width: 0 0 1px 0 !important;
+          border-radius: 0 !important;
+      }
+
+      .select2-results__option {
+          color: #26a69a;
+          padding: 8px 16px;
+          font-size: 16px;
+      }
+
+      .select2-container--default .select2-results__option--highlighted[aria-selected] {
+          background-color: #eee !important;
+          color: #26a69a !important;
+      }
+
+      .select2-container--default .select2-results__option[aria-selected=true] {
+          background-color: #e1e1e1 !important;
+      }
+
+      .select2-dropdown {
+          border: none !important;
+          box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+      }
+
+      .select2-container--default .select2-results__option[role=group] .select2-results__group {
+          background-color: #333333;
+          color: #fff;
+      }
+
+      .select2-container .select2-search--inline .select2-search__field {
+          margin-top: 0 !important;
+      }
+
+      .select2-container .select2-search--inline .select2-search__field:focus {
+          border-bottom: none !important;
+          box-shadow: none !important;
+      }
+
+      .select2-container .select2-selection--multiple {
+          min-height: 2.05rem !important;
+      }
+
+      .select2-container--default.select2-container--disabled .select2-selection--single {
+          background-color: #ddd !important;
+          color: rgba(0,0,0,0.26);
+          border-bottom: 1px dotted rgba(0,0,0,0.26);
+      }
+      .select2-search--dropdown {
+        display: block;
+        padding: 20px;
+      }
+      .select2-results__option {
+        color: #000;
+        padding: 12px 21px;
+        font-size: 1.2rem;
+      }
+      .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: #eee !important;
+        color: #000 !important;
+      }
+      .btn, .btn-large{
+        background-color: transparent;
+        border: 2px solid #000;
+        color: #000;
+        box-shadow: none;
+      }
+      .btn:hover, .btn-large:hover{
+        background-color: #000;
+        color: #fff;
+      }
 			@media only screen and (max-width: 992px) {
 				nav{
 					width: 100%;
@@ -85,15 +167,56 @@
           <div class="col s12 l12">
             <form>
               <div class="row">
-                <div class="col s6">
+                <div class="col l4 s12 offset-l2">
                   <p class="bold-text">Departure Date</p>
-                  <input type="text" class="datepicker">
+                  <input type="text" class="datepicker" name="depDate" placeholder="Choose Departure Date">
                 </div>
-                <div class="col s6">
-                  <input type="text" class="datepicker">
+                <div class="col l4 s12">
+                  <p class="bold-text">Return Date</p>
+                  <input type="text" class="datepicker" name="retDate" placeholder="Choose return Date">
                 </div>
               </div>
-
+              <div class="row">
+                <div class="col l4 s12 offset-l2">
+                  <p class="bold-text">Departure Station</p>
+                  <select id="selectDep" name="Retselect">
+                    <option value="" disabled selected>Choose departure station</option>
+                    <!-- GEt departured stations from DB -->
+                    <?php
+                      include('db.php');
+                      $sql_dep = "SELECT stations.id, stations.nimi FROM journeys INNER JOIN stations ON journeys.departure_station_id = stations.id GROUP BY stations.nimi ORDER BY stations.nimi ASC";
+                      $res_dep = mysqli_query($db, $sql_dep);
+                      $no_dep = 1;
+                      while($row_dep = mysqli_fetch_assoc($res_dep)){
+                        $station_id_dep = $row_dep["id"];
+                        $station_nimi_dep = $row_dep["nimi"];
+                        echo '<option value="'.$station_id_dep.'">'.$no_dep++, ". ", $station_nimi_dep.'</option>';
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="col l4 s12">
+                  <p class="bold-text">Return Station</p>
+                  <select id="selectRet" name="selectRet">
+                    <option value="" disabled selected>Choose return station</option>
+                    <?php
+                      $sql_ret = "SELECT stations.id, stations.nimi FROM journeys INNER JOIN stations ON journeys.return_station_id = stations.id GROUP BY stations.nimi ORDER BY stations.nimi ASC";
+                      $res_ret = mysqli_query($db, $sql_ret);
+                      $no_ret = 1;
+                      while($row_ret = mysqli_fetch_assoc($res_ret)){
+                        $station_id_ret = $row_ret["id"];
+                        $station_nimi_ret = $row_ret["nimi"];
+                        echo '<option value="'.$station_id_ret.'">'.$no_ret++, ". ", $station_nimi_ret.'</option>';
+                      }
+                    ?>
+                  </select>
+                </div>
+              </div>
+              <div class="center">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="filter">
+                  Filter
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -106,12 +229,29 @@
     <!-- jquery with datatable -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <!-- datatable.materializecss.min.js here the css is implemented to the datatable -->
-    <script src="stations_datatables.js"></script>
+    <!--<script src="stations_datatables.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.datepicker');
         var instances = M.Datepicker.init(elems, {});
       });
+      // searchable select using select2 (jQuery framework)
+      $('select').select2({width: "100%"});
+
+      // Datatables
+      $(document).ready(function () {
+        $('#mainTable').DataTable();
+        $('select').formSelect();
+      });
+      //Sidenav
+      document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems, {});
+        });
     </script>
 
   </body>
