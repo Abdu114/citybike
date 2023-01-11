@@ -165,50 +165,44 @@
             <h2>Filtering journeys</h2>
           </div>
           <div class="col s12 l12">
-            <form>
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
               <div class="row">
                 <div class="col l4 s12 offset-l2">
-                  <p class="bold-text">Departure Date</p>
+                  <p class="bold-text">Departure Date*</p>
                   <input type="text" class="datepicker" name="depDate" placeholder="Choose Departure Date">
                 </div>
                 <div class="col l4 s12">
-                  <p class="bold-text">Return Date</p>
+                  <p class="bold-text">Return Date*</p>
                   <input type="text" class="datepicker" name="retDate" placeholder="Choose return Date">
                 </div>
               </div>
               <div class="row">
                 <div class="col l4 s12 offset-l2">
-                  <p class="bold-text">Departure Station</p>
+                  <p class="bold-text">Departure Station*</p>
                   <select id="selectDep" name="Retselect">
-                    <option value="" disabled selected>Choose departure station</option>
-                    <!-- GEt departured stations from DB -->
-                    <?php
-                      include('db.php');
-                      $sql_dep = "SELECT stations.id, stations.nimi FROM journeys INNER JOIN stations ON journeys.departure_station_id = stations.id GROUP BY stations.nimi ORDER BY stations.nimi ASC";
-                      $res_dep = mysqli_query($db, $sql_dep);
-                      $no_dep = 1;
-                      while($row_dep = mysqli_fetch_assoc($res_dep)){
-                        $station_id_dep = $row_dep["id"];
-                        $station_nimi_dep = $row_dep["nimi"];
-                        echo '<option value="'.$station_id_dep.'">'.$no_dep++, ". ", $station_nimi_dep.'</option>';
-                      }
-                    ?>
+                    <option value="" disabled selected>Choose deperture station</option>
+                    <option value="291">99. Itäkeskus Metrovarikko</option>
+                    <option value="51">100. Itälahdenkatu</option>
+                    <option value="30">101. Itämerentori</option>
+                    <option value="639">102. Itäportti</option>
+                    <option value="338">103. Jakomäentie</option>
+                    <option value="340">104. Jakomäki</option>
+                    <option value="85">105. Jalavatie</option>
+                    <option value="80">106. Jäähalli</option>
                   </select>
                 </div>
                 <div class="col l4 s12">
-                  <p class="bold-text">Return Station</p>
+                  <p class="bold-text">Return Station*</p>
                   <select id="selectRet" name="selectRet">
                     <option value="" disabled selected>Choose return station</option>
-                    <?php
-                      $sql_ret = "SELECT stations.id, stations.nimi FROM journeys INNER JOIN stations ON journeys.return_station_id = stations.id GROUP BY stations.nimi ORDER BY stations.nimi ASC";
-                      $res_ret = mysqli_query($db, $sql_ret);
-                      $no_ret = 1;
-                      while($row_ret = mysqli_fetch_assoc($res_ret)){
-                        $station_id_ret = $row_ret["id"];
-                        $station_nimi_ret = $row_ret["nimi"];
-                        echo '<option value="'.$station_id_ret.'">'.$no_ret++, ". ", $station_nimi_ret.'</option>';
-                      }
-                    ?>
+                    <option value="291">99. Itäkeskus Metrovarikko</option>
+                    <option value="51">100. Itälahdenkatu</option>
+                    <option value="30">101. Itämerentori</option>
+                    <option value="639">102. Itäportti</option>
+                    <option value="338">103. Jakomäentie</option>
+                    <option value="340">104. Jakomäki</option>
+                    <option value="85">105. Jalavatie</option>
+                    <option value="80">106. Jäähalli</option>
                   </select>
                 </div>
               </div>
@@ -237,7 +231,12 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.datepicker');
-        var instances = M.Datepicker.init(elems, {});
+        var currYear = (new Date()).getFullYear();
+
+        var instances = M.Datepicker.init(elems, {
+          // date it adjusted to may 2021. 
+          defaultDate: new Date(2021,3,31),
+        });
       });
       // searchable select using select2 (jQuery framework)
       $('select').select2({width: "100%"});
