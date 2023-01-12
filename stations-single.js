@@ -4,8 +4,6 @@ const stationID = document.getElementById('id');
 const loader = document.getElementById('loader');
       
 function search(e) {
-  // Change month div to the selected month
-  monthlyBox.textContent = `Monthly ( ` + e.target.value + ` )`;
   //get resultbox
   const resultBox = document.getElementById('result');
   const monthValue = e.target.value;
@@ -23,8 +21,11 @@ function search(e) {
 
     xhr.onload = function(){
       if (xhr.readyState == 4 && xhr.status == 200) { 
-        // Put the result in to the DOM
+        // Change month div to the selected month
+        monthlyBox.textContent = `Monthly ( ` + e.target.value + ` )`;
+        // hide the loader
         loader.style.display = 'none';
+        // Put the result in to the DOM
         resultBox.style.display = 'block';
         resultBox.innerHTML = xhr.responseText;
 
@@ -54,14 +55,20 @@ filter.addEventListener('keyup', filterTasks);
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();
   document.querySelectorAll('.collection-items').forEach(
-  function(task){
-      // liiska qoraalkiisa intuu kasoo helaa
-      const item = task.textContent;
+  function(station){
+      // Here it gets all the station names
+      const item = station.textContent;
       if(item.toLowerCase().indexOf(text) != -1){
-          task.parentElement.style.display = 'block';
+        station.parentElement.style.display = 'block';
       }
       else {
-      task.parentElement.style.display = 'none';
+        station.parentElement.style.display = 'none';
       }
   });
 }
+
+//sidenav
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems, {});
+});

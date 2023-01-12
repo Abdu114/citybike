@@ -4,7 +4,7 @@
 	$mysqli = $db;
 
 	// Get the total number of records from our table "journeys".
-	$total_pages = $mysqli->query('SELECT * FROM journeys WHERE covered_distance > 10 AND duration > 10 LIMIT 100')->num_rows;
+	$total_pages = $mysqli->query('SELECT * FROM journeys WHERE covered_distance > 10 AND duration > 10 LIMIT 60000')->num_rows;
 
 	// Check if the page number is specified and check if it's a number, if not return the default page number which is 1.
 	$page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;

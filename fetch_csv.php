@@ -116,3 +116,23 @@
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+<?php
+          include('db.php');
+          $co = 1;
+          $sql = "SELECT departure_station_name, return_station_name, covered_distance, duration FROM journeys WHERE covered_distance > 10 AND duration > 10 LIMIT 10";
+          $res = mysqli_query($db, $sql);
+          while($row = mysqli_fetch_assoc($res)){
+            ?>
+            <tr>
+              <td><?= $co++ ?></td>
+              <td><?= $row['departure_station_name'] ?></td>
+              <td><?= $row['return_station_name'] ?></td>
+              <td><?= $row['covered_distance'] ?></td>
+              <td><?= $row['duration'] ?></td>
+          </tr>
+          <?php } ?>

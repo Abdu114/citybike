@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--font-->
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <!--CSS file-->
+    <!-- External CSS file-->
     <link rel="stylesheet" href="station-single.css">
     <title>City Bike || Stations Single VIew</title>
   </head>
