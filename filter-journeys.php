@@ -12,11 +12,13 @@
     <title>City Bike || Filtering journeys</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
     
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css" rel="stylesheet"/>
+
     <!-- External CSS file-->
     <link rel="stylesheet" href="filter-journeys.css">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css" rel="stylesheet"/>
     <!--Materialize JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- jQuery -->
@@ -68,7 +70,7 @@
                     <!-- Get departure stations from DB -->
                     <?php
                       include('db.php');
-                      $sql_dep = "SELECT stations.id, stations.nimi FROM journeys INNER JOIN stations ON journeys.departure_station_id = stations.id GROUP BY stations.nimi ORDER BY stations.nimi ASC";
+                      $sql_dep = "SELECT id, nimi FROM stations ORDER BY stations.nimi ASC";
                       $res_dep = mysqli_query($db, $sql_dep);
                       $no_dep = 1;
                       while($row_dep = mysqli_fetch_assoc($res_dep)){
@@ -84,7 +86,7 @@
                   <select id="selectRet" name="selectRetSt" required>
                     <option value="" disabled selected>Choose return station</option>
                     <?php
-                      $sql_ret = "SELECT stations.id, stations.nimi FROM journeys INNER JOIN stations ON journeys.return_station_id = stations.id GROUP BY stations.nimi ORDER BY stations.nimi ASC";
+                      $sql_ret = "SELECT id, nimi FROM stations ORDER BY stations.nimi ASC";
                       $res_ret = mysqli_query($db, $sql_ret);
                       $no_ret = 1;
                       while($row_ret = mysqli_fetch_assoc($res_ret)){
