@@ -59,20 +59,20 @@
                   if($station_nimi == $station_link_res_name){
                     echo '
                     <a href="stations-single.php?station='.$station_nimi.'"><li class="collection-items active  ">
-                    '.$no++, ". ", $station_nimi.'</li></a>
+                    '.$no++, ". ", ucfirst($station_nimi).'</li></a>
                     ';
                   }
                   // if the station name is same as the first station name in the DB
                   else if($station_nimi == $first_station_res_name && !isset($_GET['station'])){
                     echo '
                     <a href="stations-single.php?station='.$station_nimi.'"><li class="collection-items active  ">
-                    '.$no++, ". ", $station_nimi.'</li></a>
+                    '.$no++, ". ", ucfirst($station_nimi).'</li></a>
                     ';
                   }
                   else{
                     echo '
                     <a href="stations-single.php?station='.$station_nimi.'"><li class="collection-items">
-                    '.$no++, ". ", $station_nimi.'</li></a>
+                    '.$no++, ". ", ucfirst($station_nimi).'</li></a>
                     ';
                   }
                 }
@@ -84,6 +84,46 @@
       <!-- Data box -->
       <div class="col l7 s12 " id="data-box">
         <div class="row">
+          <?php
+            if(isset($_POST['create'])){
+              //check if inputs aren't empty
+              if(!empty($_POST['nimi']) && !empty($_POST['namn']) && !empty($_POST['name']) && !empty($_POST['osoite']) && !empty($_POST['adress']) && !empty($_POST['kaupunki']) && !empty($_POST['stad']) && !empty($_POST['operaattori']) && !empty($_POST['kapasiteetti']) && !empty($_POST['latitude']) && !empty($_POST['longitude']) && !empty($_POST['lastid'])){
+                $nimi = $_POST['nimi'];
+                $namn = $_POST['namn'];
+                $name = $_POST['name'];
+                $osoite = $_POST['osoite'];
+                $adress = $_POST['adress'];
+                $kaupunki = $_POST['kaupunki'];
+                $stad = $_POST['stad'];
+                $operaattori = $_POST['operaattori'];
+                $kapasiteetti = $_POST['kapasiteetti'];
+                $x = $_POST['latitude'];
+                $y = $_POST['longitude'];
+                $lastid = $_POST['lastid'];
+                $lastid_done = $lastid + 1;
+                $insert_sql = "INSERT INTO stations(id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattor, kapasiteet, x, y) VALUES ($lastid_done,'".$nimi."','".$namn."','".$name."','".$osoite."','".$adress."','".$kaupunki."','".$stad."','".$operaattori."','.$kapasiteetti.','".$y."','".$x."')";
+                if(mysqli_query($db, $insert_sql)){
+                  echo '
+                  <div class="col l4 s12 offset-l4" id="success">
+                    <h6 class="center-align">Created succesfully.</h6>
+                  </div>
+                  ';
+                }else{
+                  echo '
+                  <div class="col l4 s12 offset-l4" id="error">
+                    <h6 class="center-align">There is an error.</h6>
+                  </div> 
+                ';
+                }
+              }else{
+                echo '
+                <div class="col l4 s12 offset-l4" id="error">
+                  <h6 class="center-align">Please fill all the fields.</h6>
+                </div> 
+                ';
+              }
+            }else{}
+          ?>
           <div class="input-field col l2 s6" id="right-align">
             <p class="bold-text">Filter by monthly</p>
             <select id="select">
@@ -97,13 +137,13 @@
         <div class="row" id="name-row">
           <div class="col s5 offset-s1" id ="left-col">
             <p class="label">Nimi</p>
-            <h5 class="bold-text"><?php echo $station_link_res_name?></h5>
-            <h5><?php echo $station_link_res_namn?></h5>
+            <h5 class="bold-text"><?php echo ucfirst($station_link_res_name); ?></h5>
+            <h5><?php echo ucfirst($station_link_res_namn) ?></h5>
 
           </div>
           <div class="col s5" id ="right-col">
             <p class="label">Address</p>
-            <h5 class="bold-text"><?php echo $station_link_res_osoite?></h5>
+            <h5 class="bold-text"><?php echo ucfirst($station_link_res_osoite);?></h5>
           </div>
         </div>
         <div class="row">
@@ -179,7 +219,7 @@
       <div id="modal1" class="modal">
         <div class="modal-content">
           <h4 class="center-align">Create a new bicycle station</h4>
-          <form>
+          <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="row">
               <div class="col l4 s12">
                 <p class="bold-text" id="input-label">Nimi</p>
@@ -187,11 +227,11 @@
               </div>
               <div class="col l4 s12">
                 <p class="bold-text" id="input-label">Namn</p>
-                <input type="text" name="Namn" placeholder="Namn*">
+                <input type="text" name="namn" placeholder="Namn*">
               </div>
               <div class="col l4 s12">
                 <p class="bold-text" id="input-label">Name</p>
-                <input type="text" name="Name" placeholder="Name*">
+                <input type="text" name="name" placeholder="Name*">
               </div>
             </div>
             <div class="row">
@@ -207,16 +247,16 @@
             <div class="row">
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Kaupunki</p>
-                <input type="text" name="kaupunki" placeholder="Kaupunki">
+                <input type="text" name="kaupunki" placeholder="Kaupunki*">
               </div>
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Stad</p>
-                <input type="text" name="stad" placeholder="Stad">
+                <input type="text" name="stad" placeholder="Stad*">
               </div>
             </div>
             <div class="row">
               <div class="col l6 s12">
-                <p class="bold-text" id="input-label">Operaattori</p>
+                <p class="bold-text" id="input-label">Operaattori*</p>
                 <input type="text" name="operaattori" placeholder="Operaattori">
               </div>
               <div class="col l6 s12">
@@ -235,11 +275,12 @@
           <div class="modal-footer">
             <h6 class="center-align red-text" id="chooseMap">*Please choose a place from the map</h6>
             <div class="center">
-              <button class="btn waves-effect waves-light btn-large" id="submitBtn" type="submit" name="filter">
+              <button class="btn waves-effect waves-light btn-large" id="submitBtn" type="submit" name="create">
                 Create
               </button>
             </div>
           </div>
+          <input type="hidden" name="lastid" value="<?php echo $last_row_id_res ?>">
         </form>
       </div>
 
