@@ -106,15 +106,74 @@ font-weight: 600;
 #loader{
 display: none;
 }
-@media only screen and (max-width: 992px) {
-nav{
+#mapNew {
+  height: 400px;
   width: 100%;
 }
-.collections{
-  max-height: 300px;
-  overflow: overlay;
+
+#input-label {
+  margin-bottom: -5px;
 }
-#left-col{
-  padding-left: 0px;
+
+.modal {
+  padding: 15px;
+  max-height: 80%;
 }
+
+
+.modal .modal-content {
+  padding: 15px 50px 0px 50px;
+}
+
+.modal h4 {
+  border-bottom: 3px solid #000;
+  width: 36%;
+  margin: 7px auto 40px auto;
+  letter-spacing: 2px;
+}
+
+.btn-large {
+  background-color: transparent;
+  border: 2px solid #000;
+  color: #000;
+  box-shadow: none;
+  height: 54px;
+  line-height: 49px;
+  font-size: 1rem;
+  padding: 0 30px;
+  margin-top: 15px;
+}
+
+.btn-large:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-floating.btn-large {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+}
+#chooseMap{
+  display: none;
+}
+@media only screen and (max-width: 992px) {
+  nav{
+    width: 100%;
+  }
+  .collections{
+    max-height: 300px;
+    overflow: overlay;
+  }
+  #left-col{
+    padding-left: 0px;
+  }
+  .modal .modal-content {
+    padding: 15px 15px 0px 15px;
+  }
+  
+  .modal h4 {
+    width: 100%;
+  }
 }

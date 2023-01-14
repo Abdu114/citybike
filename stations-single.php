@@ -170,6 +170,78 @@
             <div id="map"></div>
           </div>
         </div>
+        <div class="fixed-action-btn">
+        <a class="btn-floating btn-large black modal-trigger" href="#modal1">
+          <i class="large material-icons">add</i>
+        </a>
+      </div>
+
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4 class="center-align">Create a new bicycle station</h4>
+          <form>
+            <div class="row">
+              <div class="col l4 s12">
+                <p class="bold-text" id="input-label">Nimi</p>
+                <input type="text" name="nimi" placeholder="Nimi*">
+              </div>
+              <div class="col l4 s12">
+                <p class="bold-text" id="input-label">Namn</p>
+                <input type="text" name="Namn" placeholder="Namn*">
+              </div>
+              <div class="col l4 s12">
+                <p class="bold-text" id="input-label">Name</p>
+                <input type="text" name="Name" placeholder="Name*">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="bold-text" id="input-label">Osoite</p>
+                <input type="text" name="osoite" placeholder="Osoite*">
+              </div>
+              <div class="col l6 s12">
+                <p class="bold-text" id="input-label">Adress</p>
+                <input type="text" name="adress" placeholder="Adress*">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="bold-text" id="input-label">Kaupunki</p>
+                <input type="text" name="kaupunki" placeholder="Kaupunki">
+              </div>
+              <div class="col l6 s12">
+                <p class="bold-text" id="input-label">Stad</p>
+                <input type="text" name="stad" placeholder="Stad">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="bold-text" id="input-label">Operaattori</p>
+                <input type="text" name="operaattori" placeholder="Operaattori">
+              </div>
+              <div class="col l6 s12">
+                <p class="bold-text" id="input-label">Kapasiteetti</p>
+                <input type="number" name="kapasiteetti" placeholder="Kapasiteetti*">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l10 s12 offset-l1">
+                <div id="mapNew"></div>
+              </div>
+            </div>
+            <input type="hidden" id="latitudeID" name="latitude">
+            <input type="hidden" id="longitudeID" name="longitude">
+        </div>
+          <div class="modal-footer">
+            <h6 class="center-align red-text" id="chooseMap">*Please choose a place from the map</h6>
+            <div class="center">
+              <button class="btn waves-effect waves-light btn-large" id="submitBtn" type="submit" name="filter">
+                Create
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
 
       </div>
     </div>
@@ -181,6 +253,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDohh_3rmXgWfj1lv59ll3GT28kKdH7ctk&callback=initMap&v=weekly"defer></script>
     <script src="stations-single.js"></script>
     <script>
+      const latitudeID = document.getElementById('latitudeID');
+      const longitudeID = document.getElementById('longitudeID');
+      const chooseMap = document.getElementById('chooseMap');
+
+      const submitBtn = document.getElementById('submitBtn').addEventListener('click', submitPrevent);
       function initMap() {
         const uluru = { lat: <?php echo $station_link_res_y?>, lng: <?php echo $station_link_res_x?> };
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -191,8 +268,55 @@
           position: uluru,
           map: map,
         });
+
+        /*Map for the new station form*/
+        const uluruNew = {
+          /*Helsinki railway station*/
+          lat: 60.17104889537247,
+          lng: 24.941539764404297
+        };
+        const mapNew = new google.maps.Map(document.getElementById("mapNew"), {
+          zoom: 15,
+          center: uluruNew,
+        });
+
+        const markerNew = new google.maps.Marker({
+          position: uluruNew,
+          map: mapNew,
+        });
+        // Configure the click listener.
+        mapNew.addListener("click", (mapsMouseEvent) => {
+          placeMarkerAndPanTo(mapsMouseEvent.latLng, mapNew);
+
+          function placeMarkerAndPanTo(latLng, mapNew) {
+            if (markerNew) {
+              // remove the previous marker
+              markerNew.setMap(null);
+              // change the marker into the clicked position
+              markerNew.setPosition(latLng);
+              markerNew.setMap(mapNew);
+              //center the map with the latLng
+              mapNew.panTo(latLng);
+
+              // hidden inputs to get the lat, lng.. 
+              latitudeID.value = mapsMouseEvent.latLng.lat();
+              longitudeID.value = mapsMouseEvent.latLng.lng();
+            }
+          }
+        });
+
       }
       window.initMap = initMap;
+
+      //don't submit if it not choosed a place from the map
+      function submitPrevent(e) {
+        if (latitudeID.value === '' && longitudeID.value === '') {
+          console.log('prevented');
+          chooseMap.style.display = 'block';
+          e.preventDefault();
+        } else {
+        }
+      }
     </script>
   </body>
 </html>
