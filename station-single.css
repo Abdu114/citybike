@@ -127,7 +127,7 @@ display: none;
 
 .modal h4 {
   border-bottom: 3px solid #000;
-  width: 36%;
+  width: 41%;
   margin: 7px auto 40px auto;
   letter-spacing: 2px;
 }
@@ -157,6 +157,20 @@ display: none;
 }
 #chooseMap{
   display: none;
+}
+
+#error {
+  padding: 10px 20px;
+  background: #ff00001f;
+  margin-top: 30px;
+  border-bottom: 2px solid #ff0000db;
+}
+#success {
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #14bf00;
+  background-color: #0f8d002e;
+  margin-top: 30px;
 }
 @media only screen and (max-width: 992px) {
   nav{
