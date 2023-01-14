@@ -53,7 +53,12 @@
   //echo $AVstartedcount_res;
 
   // average formula
-  $AVstartedjourneysdone = $AVstarted_res / $AVstartedcount_res;
+  if($AVstartedcount_res > 0){
+    $AVstartedjourneysdone = $AVstarted_res / $AVstartedcount_res;
+  }
+  else{
+    $AVstartedjourneysdone = 0;
+  }
 
   // to km
   //Changing covered distance into km
@@ -75,13 +80,18 @@
   $AVendedcount_res = $AVendedcount_fetch['countjourneysended'];
 
   // average formula
-  $AVendedjourneysdone = $AVended_res / $AVendedcount_res;
-
-  // to km
-  //Changing covered distance into km
-  $AVended_distance_km =  $AVendedjourneysdone / 1000;
-  // format into two decimals
-  $AVended_km_decimal = number_format($AVended_distance_km, 2);
+  if($AVendedcount_res > 0){
+    $AVendedjourneysdone = $AVended_res / $AVendedcount_res;
+  
+    // to km
+    //Changing covered distance into km
+    $AVended_distance_km =  $AVendedjourneysdone / 1000;
+    // format into two decimals
+    $AVended_km_decimal = number_format($AVended_distance_km, 2);
+  }
+  else{
+    $AVended_km_decimal = number_format(0, 2);
+  }
 
   //Monthly
 
@@ -111,16 +121,19 @@
   $AVstartedcount_monthly_query = mysqli_query($db, $AVstartedcount_monthly_sql);
   $AVstartedcount_monthly_fetch = mysqli_fetch_assoc($AVstartedcount_monthly_query);
   $AVstartedcount_monthly_res = $AVstartedcount_monthly_fetch['countjourneysstartedM'];
-  //echo $AVstartedcount_res;
 
   // average formula
-  $AVstartedjourneysMdone = $AVstarted_monthly_res / $AVstartedcount_monthly_res;
+  if($AVstartedcount_monthly_res > 0){
+    $AVstartedjourneysMdone = $AVstarted_monthly_res / $AVstartedcount_monthly_res;
+    // to km
+    //Changing covered distance into km
+    $AVstarted_monthly_distance_km =  $AVstartedjourneysMdone / 1000;
+    // format into two decimals
+    $AVstarted_monthly_km_decimal = number_format($AVstarted_monthly_distance_km, 2);
+  }else{
+    $AVstarted_monthly_km_decimal = number_format(0, 2);
+  }
 
-  // to km
-  //Changing covered distance into km
-  $AVstarted_monthly_distance_km =  $AVstartedjourneysMdone / 1000;
-  // format into two decimals
-  $AVstarted_monthly_km_decimal = number_format($AVstarted_monthly_distance_km, 2);
 
   // The average distance of a journeys ended (monthly)
   // First we get the sum of the covered distance 
@@ -136,11 +149,21 @@
   $AVended_monthly_count_res = $AVended_monthly_count_fetch['countjourneysendedM'];
 
   // average formula
-  $AVendedjourneysdone_monthly = $AVended_monthly_res / $AVended_monthly_count_res;
+  if($AVended_monthly_count_res > 0){
+    $AVendedjourneysdone_monthly = $AVended_monthly_res / $AVended_monthly_count_res;
+  
+    // to km
+    //Changing covered distance into km
+    $AVended_monthly_distance_km =  $AVendedjourneysdone_monthly / 1000;
+    // format into two decimals
+    $AVended_monthly_km_decimal = number_format($AVended_monthly_distance_km, 2);
+  }else{
+    $AVended_monthly_km_decimal = number_format(0, 2);
+  }
 
-  // to km
-  //Changing covered distance into km
-  $AVended_monthly_distance_km =  $AVendedjourneysdone_monthly / 1000;
-  // format into two decimals
-  $AVended_monthly_km_decimal = number_format($AVended_monthly_distance_km, 2);
+  // get the last row id
+  $last_row_id_sql = "SELECT id FROM stations ORDER BY id DESC LIMIT 1";
+  $last_row_id_query = mysqli_query($db, $last_row_id_sql);
+  $last_row_id_fetch = mysqli_fetch_assoc($last_row_id_query);
+  $last_row_id_res = $last_row_id_fetch['id'];
 ?>
