@@ -7,6 +7,37 @@ The assignment is to create a web application with a backend service for display
 **Live demo**
 >https://lasoco.fi/port/city-bike/
 
+# Description of the project:
+A fully responsive and a modern web application which fetches data from a database.
+
+## Features implemented in the web app. 
+
+### Journey list view
+##### Recommended
+* Listing journeys that covered distance is more than ten metres and lasted more than ten seconds. 
+* For each journey showed departure and return stations, covered distance in kilometers and duration in minutes
+
+##### Additional
+* Pagination
+* Searching
+* Filtering
+
+### Station list
+##### Recommended
+* List all the station
+
+##### Additional
+* Pagination
+* Searching
+* Ordering per column
+
+### Single station view
+##### Recommended
+* Station name
+* Station address
+* Total number of journeys starting from the station
+* Total number of journeys ending at the station
+
 # Prerequisites
 The datasets were in CSV file format. I decided to move all the data into a database and ofcourse I can't move a 2.9 million journeys into the database manually. So I generated a file which fetches from the CSV files and inserted into the database.
 
