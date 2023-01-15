@@ -7,7 +7,7 @@ The assignment is to create a web application with backend service for displayin
 >https://lasoco.fi/port/city-bike/
 
 # Prerequisites
-the datasets were in CSV file format. I decided to move all the data into a database and ofcourse I can't move a 2.9 million journeys into the database manually. So I generated a file which fetches from the CSV files and insertes into the database.
+The datasets were in CSV file format. I decided to move all the data into a database and ofcourse I can't move a 2.9 million journeys into the database manually. So I generated a file which fetches from the CSV files and inserted into the database.
 
 For the database I used mySQL using phpMyAdmin software. To have this software you need to have a web server. I used XAMPP as a web server (localhost). Also Linux users can use install it.
 
