@@ -11,7 +11,36 @@ The datasets were in CSV file format. I decided to move all the data into a data
 
 For the database I used mySQL using phpMyAdmin software. To have this software you need to have a web server. I used XAMPP as a web server (localhost). Also Linux users can use install it.
 
-Stations database structure (using phpMyAdmin)
+### Database
+
+Create a database called city_bike in your phpMyAdmin panel.
+
+SQL command for creating the database
+```
+CREATE DATABASE city_bike
+```
+After you create it. You need two tables in it. One for the stations and the other for the journeys.
+
+** SQL command for reating stations table.**
+
+```
+CREATE TABLE `stations` (
+  `id` int(4) NOT NULL,
+  `nimi` varchar(100) NOT NULL,
+  `namn` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `osoite` varchar(100) NOT NULL,
+  `adress` varchar(100) NOT NULL,
+  `kaupunki` varchar(50) NOT NULL,
+  `stad` varchar(50) NOT NULL,
+  `operaattor` varchar(50) NOT NULL,
+  `kapasiteet` int(4) NOT NULL,
+  `x` varchar(15) NOT NULL,
+  `y` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+**It will look like this after creation.**
+
 ![image](https://user-images.githubusercontent.com/43959036/210271389-9523442b-7591-4149-afdb-eaef6e86968f.png)
 
 Journey database structure
