@@ -70,3 +70,5 @@ ALTER TABLE `journeys`
 COMMIT;
 ```
 ![image](https://user-images.githubusercontent.com/43959036/210271344-f32662b2-11bf-4b6d-866e-ef655f59dbae.png)
+
+If creating the tables by this way looks stressful you can import to the database the two sql files found in the Database_tables folder. 
