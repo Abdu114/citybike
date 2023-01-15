@@ -38,6 +38,15 @@ A fully responsive and a modern web application which fetches data from a databa
 * Total number of journeys starting from the station
 * Total number of journeys ending at the station
 
+##### Additional
+* Station location on the map (Google Maps)
+* The average distance of a journey starting from the station
+* The average distance of a journey ending at the station
+* Ability to filter all the calculations per month
+
+### Extra
+Created UI for adding bicycle stations with Google Maps.
+
 # Prerequisites
 The datasets were in CSV file format. I decided to move all the data into a database and ofcourse I can't move a 2.9 million journeys into the database manually. So I generated a file which fetches from the CSV files and inserted into the database.
 
