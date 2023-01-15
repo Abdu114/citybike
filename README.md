@@ -1,4 +1,4 @@
-# Citybike
+# Intro
 This repository is the solution for the pre-assignment of Solita Dev Academy Finland 2023.
 
 
