@@ -68,6 +68,13 @@
 				</form>
 				<div class="card" id="card_small">
 					<!-- Here comes the ajax result -->
+					<div class="row">
+						<div class="col s12">
+							<div class="center" id="loader_small">
+								<img src="loader.svg" alt="Loading">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col s12 l6 center offset-l1">

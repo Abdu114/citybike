@@ -1,6 +1,8 @@
 const searchBox = document.getElementById('icon_prefix').addEventListener('keyup', search);
 const searchBoxSmall = document.getElementById('icon_prefix_small').addEventListener('keyup', search_small);
-      
+const loader = document.getElementById('loader');      
+const loaderSmall = document.getElementById('loader_small');      
+
 function search(e) {
   //get card
   const card = document.getElementById('card');
@@ -13,11 +15,14 @@ function search(e) {
 
     xhr.open('GET', 'journey_ajax.php?j=' + cardValue, true);
 
-    xhr.onprogress = function(){
+    // We show a loader while ajax is loading
+    xhr.onloadstart = function(){
+      loader.style.display = 'block';
     }
     xhr.onload = function(){
       if (xhr.readyState == 4 && xhr.status == 200) { 
         // Put the result in DOM
+        loader.style.display = 'none';
         card.innerHTML = xhr.responseText;
       }
       else{
@@ -33,31 +38,34 @@ function search(e) {
 // for small screens search box      
 function search_small(e) {
   //get card
-  const card = document.getElementById('card_small');
-  const cardValue = e.target.value;
+  const cardSmall = document.getElementById('card_small');
+  const cardValueSmall = e.target.value;
   // input is not empty
   if(e.target.value !== ''){
-    card.style.display = 'block';
+    // cardSmall.style.display = 'block';
 
-    const xhr = new XMLHttpRequest();
+    const xhr_small = new XMLHttpRequest();
 
-    xhr.open('GET', 'journey_ajax.php?j=' + cardValue, true);
+    xhr_small.open('GET', 'journey_ajax.php?j=' + cardValueSmall, true);
 
-    xhr.onprogress = function(){
+    // We show a loader while ajax is loading
+    xhr_small.onloadstart = function(){
+      loaderSmall.style.display = 'block';
     }
-    xhr.onload = function(){
-      if (xhr.readyState == 4 && xhr.status == 200) { 
+    xhr_small.onload = function(){
+      if (xhr_small.readyState == 4 && xhr_small.status == 200) { 
         // Put the result in DOM
-        card.innerHTML = xhr.responseText;
+        loaderSmall.style.display = 'none';
+        cardSmall.innerHTML = xhr_small.responseText;
       }
       else{
         console.log('error');
       }
     }
-    xhr.send();
+    xhr_small.send();
   }
   else{
-    card.style.display = 'none';
+    cardSmall.style.display = 'none';
   }
 }
 

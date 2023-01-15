@@ -63,14 +63,12 @@ li:last-child a:hover {
 }
 #card{
   font-size: 1.2rem;
-  display: none;
   width: 91%;
   margin-left: 47px;
   box-shadow: none;
 }
 #card_small{
   font-size: 1.2rem;
-  display: none;
   width: 91%;
   box-shadow: none;
 }
@@ -120,6 +118,9 @@ nav ul li:hover{
   background-color: #ffffff50;
 }
 #loader{
+  display: none;
+}
+#loader_small{
   display: none;
 }
 @media only screen and (max-width: 992px) {
