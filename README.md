@@ -1,8 +1,8 @@
 # citybike
 This is a pre-assignment for a company.
 
-Here is a live demo.
-https://lasoco.fi/port/city-bike/
+**Here is a live demo**
+>https://lasoco.fi/port/city-bike/
 
 Stations database structure (using phpMyAdmin)
 ![image](https://user-images.githubusercontent.com/43959036/210271389-9523442b-7591-4149-afdb-eaef6e86968f.png)
