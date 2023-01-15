@@ -137,8 +137,12 @@ Here is how you can increase it.
 ### Frontend
 * HTML5
 * Materialize CSS
-* Ajax using Vanilla JS
+* AJAX using Vanilla JS
+* DataTables JS
 
 ### Backend
 * PHP
 * MySQL
+
+## TODO
+In the station list page the table headers will not be fully responsive when screen is resized to small. But refreshing the page will solve it. 
