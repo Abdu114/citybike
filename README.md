@@ -72,3 +72,23 @@ COMMIT;
 ![image](https://user-images.githubusercontent.com/43959036/210271344-f32662b2-11bf-4b6d-866e-ef655f59dbae.png)
 
 >If creating the tables by this way looks stressful you can import to the database the two sql files found in the Database_tables folder. 
+
+## Configurations
+Configure the code in the db.php file if needed.
+```
+  define('DB_SERVER', 'localhost');
+  define('DB_USERNAME', 'root');
+  define('DB_PASSWORD', '');
+  define('DB_DATABASE', 'city_bike');
+```
+
+## How to run the project?
+1. Clone this repository after creating database and its tables. 
+2. Move all files into the XAMPP/htdocs folder.  
+3. After completing this steps you can open the downloaded folder with any code editor and just run it.
+
+
+**Note** Fetching journey's data in the index page is limited to 30000. If you wish to try full fetching you need to increase your maximum allowed time to respond to the browser.
+
+Here is how you can increase it.
+>https://ssamsoftwares.com/increase-php-max-execution-time-xampp-local-server/
