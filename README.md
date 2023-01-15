@@ -1,8 +1,8 @@
 # Citybike
-This is the pre-assignment for Solita Dev Academy Finland 2023.
+This repository is the solution for the pre-assignment of Solita Dev Academy Finland 2023.
 
 
-The assignment is to create a web application with backend service for displaying data from journeys made with city bikes in the Helsinki Capital area.
+The assignment is to create a web application with a backend service for displaying data from journeys made with city bikes in the Helsinki Capital area.
 
 **Live demo**
 >https://lasoco.fi/port/city-bike/
