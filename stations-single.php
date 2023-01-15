@@ -223,45 +223,45 @@
             <div class="row">
               <div class="col l4 s12">
                 <p class="bold-text" id="input-label">Nimi</p>
-                <input type="text" name="nimi" placeholder="Nimi*">
+                <input type="text" name="nimi" placeholder="Nimi*" required>
               </div>
               <div class="col l4 s12">
                 <p class="bold-text" id="input-label">Namn</p>
-                <input type="text" name="namn" placeholder="Namn*">
+                <input type="text" name="namn" placeholder="Namn*" required>
               </div>
               <div class="col l4 s12">
                 <p class="bold-text" id="input-label">Name</p>
-                <input type="text" name="name" placeholder="Name*">
+                <input type="text" name="name" placeholder="Name*" required>
               </div>
             </div>
             <div class="row">
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Osoite</p>
-                <input type="text" name="osoite" placeholder="Osoite*">
+                <input type="text" name="osoite" placeholder="Osoite*" required>
               </div>
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Adress</p>
-                <input type="text" name="adress" placeholder="Adress*">
+                <input type="text" name="adress" placeholder="Adress*" required>
               </div>
             </div>
             <div class="row">
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Kaupunki</p>
-                <input type="text" name="kaupunki" placeholder="Kaupunki*">
+                <input type="text" name="kaupunki" placeholder="Kaupunki*" required>
               </div>
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Stad</p>
-                <input type="text" name="stad" placeholder="Stad*">
+                <input type="text" name="stad" placeholder="Stad*" required>
               </div>
             </div>
             <div class="row">
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Operaattori*</p>
-                <input type="text" name="operaattori" placeholder="Operaattori">
+                <input type="text" name="operaattori" placeholder="Operaattori" required>
               </div>
               <div class="col l6 s12">
                 <p class="bold-text" id="input-label">Kapasiteetti</p>
-                <input type="number" name="kapasiteetti" placeholder="Kapasiteetti*">
+                <input type="number" name="kapasiteetti" placeholder="Kapasiteetti*" required>
               </div>
             </div>
             <div class="row">
@@ -289,7 +289,6 @@
     
     <!-- js materializecss -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    </script>
     <!--Google map Js-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDohh_3rmXgWfj1lv59ll3GT28kKdH7ctk&callback=initMap&v=weekly"defer></script>
     <script src="stations-single.js"></script>
