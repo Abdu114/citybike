@@ -1,5 +1,6 @@
 # Citybike
-This is a pre-assignment for a company.
+This is the pre-assignment for Solita Dev Academy Finland 2023.
+
 
 The assignment is to create a web application with backend service for displaying data from journeys made with city bikes in the Helsinki Capital area.
 
@@ -15,13 +16,14 @@ For the database I used mySQL using phpMyAdmin software. To have this software y
 
 Create a database called city_bike in your phpMyAdmin panel.
 
-SQL command for creating the database
+**SQL command for creating the database**
+
 ```
 CREATE DATABASE city_bike
 ```
 After you create it. You need two tables in it. One for the stations and the other for the journeys.
 
-** SQL command for reating stations table.**
+**SQL command for creating stations table.**
 
 ```
 CREATE TABLE `stations` (
@@ -43,22 +45,28 @@ CREATE TABLE `stations` (
 
 ![image](https://user-images.githubusercontent.com/43959036/210271389-9523442b-7591-4149-afdb-eaef6e86968f.png)
 
-Journey database structure
+
+**SQL command for creating journeys table.**
+
+```
+CREATE TABLE `journeys` (
+  `id` int(11) NOT NULL,
+  `departure_date` datetime NOT NULL,
+  `return_date` datetime NOT NULL,
+  `departure_station_id` int(4) NOT NULL,
+  `departure_station_name` varchar(100) NOT NULL,
+  `return_station_id` int(4) NOT NULL,
+  `return_station_name` varchar(100) NOT NULL,
+  `covered_distance` int(11) NOT NULL,
+  `duration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+We will connect between the two tables using foreign key by station ID.
+
+```
+ALTER TABLE `journeys`
+  ADD CONSTRAINT `journeys_ibfk_1` FOREIGN KEY (`departure_station_id`) REFERENCES `stations` (`id`),
+  ADD CONSTRAINT `journeys_ibfk_2` FOREIGN KEY (`return_station_id`) REFERENCES `stations` (`id`);
+COMMIT;
+```
 ![image](https://user-images.githubusercontent.com/43959036/210271344-f32662b2-11bf-4b6d-866e-ef655f59dbae.png)
-
-* Import data from the CSV files to a database or in-memory storage (done)
-* Validate data before importing (done)
-* Don't import journeys that lasted for less than ten seconds (done)
-* Don't import journeys that covered distances shorter than 10 meters (done)
-
-Journey list view
-Recommended
-* List journeys
-  * If you don't implement pagination, use some hard-coded limit for the list length because showing several million rows would make any browser choke (done)
-* For each journey show departure and return stations, covered distance in kilometers and duration in minutes (done)
-
-Additional
-* Pagination (done)
-* Ordering per column
-* Searching (done)
-* Filtering
