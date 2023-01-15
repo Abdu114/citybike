@@ -132,3 +132,13 @@ Configure the code in the db.php file if needed.
 
 Here is how you can increase it.
 >https://ssamsoftwares.com/increase-php-max-execution-time-xampp-local-server/
+
+## Technology choices:
+### Frontend
+* HTML5
+* Materialize CSS
+* Ajax using Vanilla JS
+
+### Backend
+* PHP
+* MySQL
