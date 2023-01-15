@@ -10,7 +10,7 @@ The assignment is to create a web application with a backend service for display
 # Description of the project:
 A fully responsive and a modern web application which fetches data from a database.
 
-## Features implemented in the web app. 
+## Features implemented in to the web app. 
 
 ### Journey list view
 ##### Recommended
@@ -44,7 +44,7 @@ A fully responsive and a modern web application which fetches data from a databa
 * The average distance of a journey ending at the station
 * Ability to filter all the calculations per month
 
-### Extra
+### Extras
 Created UI for adding bicycle stations with Google Maps.
 
 # Prerequisites
