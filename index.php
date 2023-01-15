@@ -33,7 +33,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 		<!-- External CSS file-->
     <link rel="stylesheet" href="index.css">
-    <title>City Bike || Journeys List VIew</title>
+    <title>City Bike || Journeys List View</title>
 	</head>
 	<body>
 		<nav>
