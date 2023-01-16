@@ -1,5 +1,5 @@
 # Intro
-This repository is the solution for the pre-assignment of Solita Dev Academy Finland 2023.
+This repository is the solution of the pre-assignment for Solita Dev Academy Finland 2023.
 
 
 The assignment is to create a web application with a backend service for displaying data from journeys made with city bikes in the Helsinki Capital area.
