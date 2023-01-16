@@ -33,7 +33,9 @@
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 		<!-- External CSS file-->
     <link rel="stylesheet" href="index.css">
-    <title>City Bike || Journeys List View</title>
+		<!-- Font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>City Bike || Journeys List View</title>
 	</head>
 	<body>
 		<nav>
@@ -182,6 +184,15 @@
 				<p id="fetchlimit">*Fetched data is limited.</p>
 			</div>
 		</div>
+		<!-- footer -->
+		<footer class="page-footer">
+			<div class="center">
+				<a class="center-align" id="footerlink" href="https://github.com/Abdu114/citybike" target="_blank">
+					<i class="fa-brands fa-github" id="github-icon"></i>
+					Github repository
+				</a>
+			</div>	
+		</footer>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <script src="journey.js"></script>
 	</body>

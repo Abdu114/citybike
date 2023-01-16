@@ -123,6 +123,22 @@ nav ul li:hover{
 #loader_small{
   display: none;
 }
+.page-footer {
+  padding: 10px 0px;
+  color: #fff;
+  background-color: #000;
+}
+#footerlink {
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+#github-icon{
+  margin-right: 10px;
+}
+#footerlink:hover{
+  border-bottom: 1px solid #fff;
+}
 @media only screen and (max-width: 992px) {
   nav{
     width: 100%;
