@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--font-->
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <!-- Font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>City Bike || Stations List VIew</title>
     <style>
       html {
@@ -16,6 +18,15 @@
           padding: 20px;
           background-color: #fff;
           color: #222;
+      }
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto;
       }
       table{
           font-size: 1.2rem;
@@ -46,6 +57,22 @@
 			nav ul li:hover{
 				background-color: #ffffff50;
 			}
+      .page-footer {
+        padding: 10px 0px;
+        color: #fff;
+        background-color: #000;
+      }
+      #footerlink {
+        color: #fff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      #github-icon{
+        margin-right: 10px;
+      }
+      #footerlink:hover{
+        border-bottom: 1px solid #fff;
+      }
 			@media only screen and (max-width: 992px) {
 				nav{
 					width: 100%;
@@ -108,6 +135,15 @@
         </div>
       </section>
     </div>
+    <!-- footer -->
+		<footer class="page-footer">
+			<div class="center">
+				<a class="center-align" id="footerlink" href="https://github.com/Abdu114/citybike" target="_blank">
+					<i class="fa-brands fa-github" id="github-icon"></i>
+					Github repository
+				</a>
+			</div>	
+		</footer>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- js materializecss -->
