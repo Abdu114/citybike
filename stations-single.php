@@ -15,6 +15,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <!-- External CSS file-->
     <link rel="stylesheet" href="station-single.css">
+    <!-- Font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>City Bike || Stations Single VIew</title>
   </head>
   <body>
@@ -283,10 +285,17 @@
           <input type="hidden" name="lastid" value="<?php echo $last_row_id_res ?>">
         </form>
       </div>
-
       </div>
     </div>
-    
+    <!-- footer -->
+		<footer class="page-footer">
+			<div class="center">
+				<a class="center-align" id="footerlink" href="https://github.com/Abdu114/citybike" target="_blank">
+					<i class="fa-brands fa-github" id="github-icon"></i>
+					Github repository
+				</a>
+			</div>	
+		</footer>
     <!-- js materializecss -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--Google map Js-->

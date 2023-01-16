@@ -172,6 +172,22 @@ display: none;
   background-color: #0f8d002e;
   margin-top: 30px;
 }
+.page-footer {
+  padding: 10px 0px;
+  color: #fff;
+  background-color: #000;
+}
+#footerlink {
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+#github-icon{
+  margin-right: 10px;
+}
+#footerlink:hover{
+  border-bottom: 1px solid #fff;
+}
 @media only screen and (max-width: 992px) {
   nav{
     width: 100%;
