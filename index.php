@@ -178,7 +178,8 @@
 					<?php endif; ?>
 				</ul>
 				<?php endif; ?>
-				<p class="center-align total">Total journeys:<span class="total_num"><?php echo $total_pages;?></span></p>
+				<p class="center-align total">Total journeys*:<span class="total_num"><?php echo $total_pages;?></span></p>
+				<p id="fetchlimit">*Fetched data is limited.</p>
 			</div>
 		</div>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
