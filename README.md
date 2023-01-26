@@ -139,7 +139,7 @@ Here is how you can increase it.
 * Materialize CSS
 * AJAX using Vanilla JS
 * DataTables JS
-* Google Maps
+* Google Maps API
 
 ### Backend
 * PHP
